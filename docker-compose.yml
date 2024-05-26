@@ -1,0 +1,91 @@
+version: '3.8'
+services:
+
+  discovery-server:
+    build: ./4fap-back/discovery-server
+    networks:
+      - 4fap-network
+    ports:
+      - "8761:8761"
+
+  user-db:
+    image: postgres
+    networks:
+      - 4fap-network
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: users
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - user-data:/var/lib/postgresql/data
+
+  user-service:
+    build: ./4fap-back/user-service
+    networks:
+      - 4fap-network
+    ports:
+      - "8080:8080"
+    depends_on:
+      - user-db
+      - discovery-server
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://user-db/users
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+
+  files-db:
+    image: postgres
+    networks:
+      - 4fap-network
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: files
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - files-data:/var/lib/postgresql/data
+
+  files-service:
+    build: ./4fap-back/file-service
+    networks:
+      - 4fap-network
+    ports:
+      - "8081:8081"
+    depends_on:
+      - files-db
+      - discovery-server
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://files-db/files
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: password
+
+  minio:
+    container_name: s3minio
+    image: bitnami/minio:latest
+    networks:
+      - 4fap-network
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_storage:/data
+
+  nextjs:
+    build:
+      context: ./4fap-webapp
+      dockerfile: Dockerfile
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: "http://localhost:8080"
+    ports:
+      - "3000:3000"
+
+networks:
+  4fap-network:
+
+volumes:
+  user-data:
+  files-data:
+  minio_storage:
