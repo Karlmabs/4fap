@@ -131,6 +131,8 @@ public class AuthController {
                 .password(encoder.encode(signUpRequest.getPassword()))
                 .firstName(signUpRequest.getFirstName())
                 .lastName(signUpRequest.getLastName())
+                .storageQuota("100")
+                .storageUsed("0")
                 .build();
 
         Set<String> strRoles = signUpRequest.getRole();

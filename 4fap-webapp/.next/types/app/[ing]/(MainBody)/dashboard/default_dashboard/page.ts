@@ -1,4 +1,4 @@
-// File: /home/karlmabs/Documents/dev_projects/4fap-webapp/src/app/[ing]/(MainBody)/dashboard/default_dashboard/page.tsx
+// File: /home/karlmabs/Documents/dev_projects/4fap/4fap-webapp/src/app/[ing]/(MainBody)/dashboard/default_dashboard/page.tsx
 import * as entry from '../../../../../../../src/app/[ing]/(MainBody)/dashboard/default_dashboard/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

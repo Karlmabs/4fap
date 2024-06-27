@@ -34,6 +34,12 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://user-db/users
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: password
+      SPRING_MAIL_HOST: smtp.gmail.com
+      SPRING_MAIL_PORT: 587
+      SPRING_MAIL_USERNAME: maboukarl2@gmail.com
+      SPRING_MAIL_PASSWORD: pwdp yksa qees lbuf
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: true
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
 
   files-db:
     image: postgres
@@ -61,6 +67,11 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://files-db/files
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: password
+      MINIO_URL: http://minio:9000
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: miniosecret
+      MINIO_BUCKET_NAME: files
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://discovery-server:8761/eureka
 
   minio:
     container_name: s3minio

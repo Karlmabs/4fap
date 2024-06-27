@@ -1,8 +1,5 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
   "/auth/login/page": "app/auth/login/page.js",
-  "/auth/register/page": "app/auth/register/page.js",
-  "/[ing]/(MainBody)/dashboard/default_dashboard/page": "app/[ing]/(MainBody)/dashboard/default_dashboard/page.js",
   "/[ing]/(MainBody)/file_manager/page": "app/[ing]/(MainBody)/file_manager/page.js",
-  "/[ing]/(MainBody)/sample_page/page": "app/[ing]/(MainBody)/sample_page/page.js"
+  "/[ing]/(MainBody)/dashboard/default_dashboard/page": "app/[ing]/(MainBody)/dashboard/default_dashboard/page.js"
 }
